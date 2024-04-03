@@ -36,6 +36,17 @@ What makes Statix the fastest library around:
 
 See [the documentation](https://hexdocs.pm/statix) for detailed usage information.
 
+## Why Forked Repo?
+
+**Statix Compatibility**: [Statix](https://github.com/lexmag/statix), does not yet support OTP-26. It is using `Port.command` instead of `:gen_udp.send`, as the former was considered more performant for OTP 25 and older versions. However, due to OTP updates occurring at the networking layer, this approach no longer works. Now, `gen_udp.send` has been optimized, rendering the previous workaround obsolete.
+
+### References
+- **Open PR**: There is an open pull request in the Statix repository addressing this issue: [Pull Request #72](https://github.com/lexmag/statix/pull/72). This PR aims to update the codebase to support OTP-26 and utilize the optimized `gen_udp.send` function.
+
+- **Erlang Discussion**: For further insights, you can refer to the Erlang discussion about the breaking change in `Port.command` for OTP-26: [Issue #7130](https://github.com/erlang/otp/issues/7130).
+
+By utilizing the forked repository of [Statix](https://github.com/lexmag/statix), we can maintain compatibility with OTP-26. As Statix evolves and potentially adds support for our current version, we aim to transition back to the main Statix repository. Alternatively, we'll explore alternatives should the need arise in the future.
+
 ## Installation
 
 Add Statix as a dependency to your `mix.exs` file:
